@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { MantineProvider } from '@mantine/core'
+import { NotificationsProvider } from '@mantine/notifications'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Passkey from './pages/Passkey'
+
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <MantineProvider withGlobalStyles withNormalizeCSS>
+    <NotificationsProvider>
+      <div style={{ minHeight: 'calc(100vh - 160px)', position: 'relative' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/passkey" element={<Passkey />} />
+        </Routes>
+      </div>
+    </NotificationsProvider>
+  </MantineProvider>
 }
 
-export default App;
+export default App
